@@ -1,0 +1,24 @@
+{
+  "dona-nina-tablet": {
+    "w": 634,
+    "h": 1477,
+    "ratio": 0.4292,
+    "screen": {
+      "left": 25.552,
+      "top": 39.201,
+      "width": 50.0,
+      "height": 14.557
+    }
+  },
+  "seu-fuba-tablet": {
+    "w": 615,
+    "h": 1474,
+    "ratio": 0.4172,
+    "screen": {
+      "left": 23.415,
+      "top": 33.175,
+      "width": 44.228,
+      "height": 12.754
+    }
+  }
+}

@@ -1,0 +1,124 @@
+@import "tailwindcss";
+
+/* ══════════════════════════════════════════════════════════════
+   MISTURINHA MALUQUINHA — design tokens
+   Paleta extraída diretamente da logo e das capas dos livros.
+   ══════════════════════════════════════════════════════════════ */
+@theme {
+  /* marca */
+  --color-azul:    #0271B8;
+  --color-azul-e:  #015A94;
+  --color-ceu:     #52CBF9;
+  --color-ceu-c:   #A7E4FC;
+  --color-vermelho:#E71626;
+  --color-laranja: #FA4110;
+  --color-ambar:   #F69805;
+  --color-amarelo: #EEB80E;
+  --color-verde:   #65AA2D;
+  --color-verde-e: #4A8320;
+  --color-roxo:    #894188;
+  --color-rosa:    #E0568F;
+
+  /* neutros quentes — nada de cinza frio, o material é todo massinha */
+  --color-tinta:   #2C2951;
+  --color-tinta-2: #55507F;
+  --color-papel:   #FFF8E9;
+  --color-papel-2: #FDEFD6;
+  --color-creme:   #F6E3C0;
+
+  --font-display: var(--font-baloo), system-ui, sans-serif;
+  --font-sans:    var(--font-nunito), system-ui, sans-serif;
+
+  --radius-blob: 2.5rem;
+
+  --animate-float:      float 6s ease-in-out infinite;
+  --animate-float-slow: float 9s ease-in-out infinite;
+  --animate-spin-slow:  spin 46s linear infinite;
+  --animate-wiggle:     wiggle 3.2s ease-in-out infinite;
+  --animate-drift:      drift 70s linear infinite;
+  --animate-bob:        bob 4.5s ease-in-out infinite;
+  --animate-pulse-ring: pulseRing 2.6s ease-out infinite;
+}
+
+@keyframes float  { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-16px)} }
+@keyframes bob    { 0%,100%{transform:translateY(0) rotate(-1deg)} 50%{transform:translateY(-9px) rotate(1deg)} }
+@keyframes wiggle { 0%,100%{transform:rotate(-2.5deg)} 50%{transform:rotate(2.5deg)} }
+@keyframes drift  { from{transform:translateX(-12%)} to{transform:translateX(112%)} }
+@keyframes pulseRing { 0%{transform:scale(.85);opacity:.7} 70%{transform:scale(1.5);opacity:0} 100%{opacity:0} }
+
+/* ── base ─────────────────────────────────────────────────── */
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+
+body {
+  background: var(--color-papel);
+  color: var(--color-tinta);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: var(--color-amarelo); color: var(--color-tinta); }
+
+:focus-visible {
+  outline: 3px solid var(--color-azul);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+h1,h2,h3,h4 { font-family: var(--font-display); font-weight: 800; line-height: 1.04; }
+
+/* ── utilitários ──────────────────────────────────────────── */
+
+/* contorno tipo massinha, igual ao lettering dos livros */
+.text-outline {
+  -webkit-text-stroke: clamp(2px, .5vw, 5px) var(--color-tinta);
+  paint-order: stroke fill;
+}
+
+/* textura de papel reciclado — tira o "liso demais" de tela */
+.paper {
+  background-color: var(--color-papel);
+  /* manchas com tamanho fixo e longe das bordas: a borda da seção fica
+     exatamente #FFF8E9 e o divisor vizinho encaixa sem costura */
+  background-image:
+    radial-gradient(460px 300px at 22% 42%, rgba(246,227,192,.5), transparent 72%),
+    radial-gradient(560px 340px at 78% 58%, rgba(167,228,252,.3), transparent 72%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.055'/%3E%3C/svg%3E");
+}
+
+/* sombra de contato no chão — "cola" o personagem na cena */
+.char-shadow::after {
+  content: ""; position: absolute; left: 50%; bottom: -1.5%;
+  width: 62%; height: 5%;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at center, rgba(44,41,81,.28) 0%, transparent 72%);
+  pointer-events: none;
+}
+
+.stroke-card {
+  border: 3px solid var(--color-tinta);
+  box-shadow: 0 6px 0 0 var(--color-tinta);
+}
+
+.btn-3d {
+  border: 3px solid var(--color-tinta);
+  box-shadow: 0 6px 0 0 var(--color-tinta);
+  transition: transform .13s ease, box-shadow .13s ease;
+}
+.btn-3d:hover  { transform: translateY(-2px); box-shadow: 0 8px 0 0 var(--color-tinta); }
+.btn-3d:active { transform: translateY(4px);  box-shadow: 0 2px 0 0 var(--color-tinta); }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+
+/* ── acessibilidade: desliga tudo que se mexe ─────────────── */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+  }
+}
