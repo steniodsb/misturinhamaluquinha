@@ -1,7 +1,8 @@
 # Misturinha Maluquinha — página de vendas
 
 Landing page de página única da coleção literária infantil **Misturinha Maluquinha** (Luan Gonçalves, Jequié-BA).
-Next.js 15 (App Router) + React 19 + Tailwind CSS 4 + `motion` (Framer Motion 12) + Lenis (scroll suave).
+Next.js 16 (App Router, Turbopack) + React 19 + Tailwind CSS 4 + `motion` (Framer Motion 12) + Lenis (scroll suave).
+Node fixado em 22.x (`engines`) para a Vercel. A Vercel recusa builds com Next < 16.3.1 (CVE-2025-66478) — não faça downgrade.
 Sai como **HTML estático** (`output: 'export'`) — roda em qualquer hospedagem, inclusive cPanel, sem Node no servidor.
 
 ## Rodar
