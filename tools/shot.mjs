@@ -19,6 +19,7 @@ const page = await browser.newPage({ viewport: { width: W, height: W < 600 ? 844
 const erros = []
 page.on('console', (m) => { if (m.type() === 'error') erros.push(m.text().slice(0, 300)) })
 page.on('pageerror', (e) => erros.push('PAGEERROR ' + e.message.slice(0, 300)))
+page.on('response', (r) => { if (r.status() >= 400) erros.push('HTTP ' + r.status() + ' ' + r.url()) })
 
 await page.goto(url, { waitUntil: 'networkidle' })
 

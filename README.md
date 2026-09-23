@@ -18,6 +18,22 @@ npm run build      # gera a pasta out/ (site estático pronto para subir)
 - **cPanel / WaveHost / Apache / Nginx:** suba o conteúdo de `out/` para a raiz do domínio (`public_html`). Não precisa de nada além dos arquivos.
 - **Vercel / Netlify:** conecte a pasta `site/`, build command `npm run build`, output `out/`.
 
+## Publicar dentro de um WordPress (100% igual, sem Elementor)
+
+O WordPress passa a **servir o `index.html` exportado** numa URL do site; assets ficam em `wp-content/uploads/misturinha/`.
+Nada do tema/plugins encosta na página, então animações, vídeos e fontes ficam idênticos à Vercel.
+
+```bash
+npm run pack:wp            # gera wp-pack/ (base padrão: /wp-content/uploads/misturinha)
+# outra base: node tools/wp-pack.mjs --base=/wp-content/uploads/lp
+```
+
+1. Copie `wp-pack/misturinha/` (index.html, `_next/`, `assets/`) para `wp-content/uploads/misturinha/` via FTP ou Gerenciador de Arquivos do cPanel (a Biblioteca de Mídia não aceita .js/.css).
+2. Copie `wp-pack/misturinha-page.php` para `wp-content/mu-plugins/` (crie a pasta se não existir — mu-plugins ativam sozinhos).
+3. Escolha a URL em `MISTURINHA_SLUG` dentro do PHP: `'misturinha'` → `seudominio.com/misturinha/`; `''` → página inicial.
+
+Para atualizar o site depois: `npm run pack:wp` e substitua a pasta `misturinha/` no uploads. Os nomes dos arquivos em `_next/` mudam a cada build — apague a pasta antiga antes de subir a nova.
+
 ## Onde editar
 
 | O quê | Onde |

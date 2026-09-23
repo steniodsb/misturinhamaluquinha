@@ -6,6 +6,7 @@
     "dev": "next dev -p 4321",
     "build": "next build",
     "start": "next start -p 4321",
+    "pack:wp": "next build && node tools/wp-pack.mjs",
     "lint": "next lint"
   },
   "dependencies": {
