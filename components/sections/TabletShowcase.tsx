@@ -236,12 +236,28 @@ export default function TabletShowcase() {
               mount={MOUNTS.donaNina}
               alt="Dona Nina, a professora, segurando um tablet com a apresentação da coleção"
               overlay={
-                <span className="relative grid h-12 w-12 place-items-center rounded-full border-[3px] border-[#2C2951] bg-[#E71626] text-white shadow-[0_4px_0_0_#2C2951] transition group-hover:scale-110 md:h-14 md:w-14">
-                  <span className="absolute inset-0 rounded-full bg-[#E71626] animate-[pulseRing_2.6s_ease-out_infinite]" aria-hidden />
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className="relative ml-0.5" aria-hidden>
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                </span>
+                <>
+                  <span className="relative grid h-12 w-12 place-items-center rounded-full border-[3px] border-[#2C2951] bg-[#E71626] text-white shadow-[0_4px_0_0_#2C2951] transition group-hover:scale-110 md:h-14 md:w-14">
+                    <span className="absolute inset-0 rounded-full bg-[#E71626] animate-[pulseRing_2.6s_ease-out_infinite]" aria-hidden />
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className="relative ml-0.5" aria-hidden>
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </span>
+
+                  {/* CTA explícito, colado embaixo da tela: no celular ninguém
+                      adivinha que o tablet é clicável */}
+                  <motion.span
+                    className="absolute left-1/2 top-[118%] flex w-max -translate-x-1/2 items-center gap-1.5 whitespace-nowrap rounded-full border-[3px] border-[#2C2951] bg-[#EEB80E] px-3.5 py-1.5 font-display text-[13px] font-extrabold text-[#2C2951] shadow-[0_4px_0_0_#2C2951] transition group-hover:-translate-y-0.5 md:px-4 md:py-2 md:text-sm"
+                    animate={off ? { y: [0, -4, 0] } : undefined}
+                    transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+                  >
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                      <path d="M12 19V5M5 12l7-7 7 7" />
+                    </svg>
+                    <span className="md:hidden">Toque para assistir</span>
+                    <span className="hidden md:inline">Clique para assistir</span>
+                  </motion.span>
+                </>
               }
             >
               <video
@@ -258,24 +274,6 @@ export default function TabletShowcase() {
                 aria-hidden
               />
             </Montagem>
-
-            {/* CTA explícito: no celular ninguém adivinha que o tablet é clicável */}
-            <span className="pointer-events-none relative z-10 mt-3 flex items-center justify-center gap-2">
-              <motion.span
-                aria-hidden
-                className="text-[#EEB80E]"
-                animate={off ? { y: [0, -6, 0] } : undefined}
-                transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
-              >
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 19V5M5 12l7-7 7 7" />
-                </svg>
-              </motion.span>
-              <span className="btn-3d rounded-full bg-[#EEB80E] px-5 py-2.5 font-display text-base font-extrabold text-[#2C2951] transition group-hover:-translate-y-0.5">
-                <span className="md:hidden">Toque no tablet para assistir</span>
-                <span className="hidden md:inline">Clique no tablet para assistir</span>
-              </span>
-            </span>
           </button>
         </motion.div>
       </div>
