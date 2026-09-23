@@ -41,7 +41,7 @@ export default function Inclusao() {
               sizes="(max-width: 768px) 70vw, 380px"
               alt="Seu Fubá segurando um tablet com o vídeo em LIBRAS"
               loading="lazy"
-              className="absolute inset-0 h-full w-full object-contain drop-shadow-[0_18px_26px_rgba(0,0,0,.35)]"
+              className="absolute inset-0 h-full w-full object-contain"
             />
             <div
               className="absolute overflow-hidden rounded-[5px] shadow-[inset_0_0_12px_rgba(0,0,0,.45)]"

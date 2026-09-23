@@ -217,7 +217,7 @@ export function CharImg({
         decoding="async"
         draggable={false}
         style={{ aspectRatio: RATIOS[slug] }}
-        className={'w-full h-auto select-none drop-shadow-[0_10px_18px_rgba(44,41,81,0.18)] ' + anim}
+        className={'w-full h-auto select-none ' + anim}
       />
     </div>
   )

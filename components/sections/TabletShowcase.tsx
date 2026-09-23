@@ -38,7 +38,7 @@ function Montagem({
         srcSet={`/assets/mounts/${mount.slug}@sm.webp 560w, /assets/mounts/${mount.slug}.webp 1100w`}
         sizes="(max-width: 768px) 78vw, 460px"
         alt={alt}
-        className="absolute inset-0 h-full w-full select-none object-contain drop-shadow-[0_18px_26px_rgba(44,41,81,.24)]"
+        className="absolute inset-0 h-full w-full select-none object-contain"
         draggable={false}
       />
       <div
@@ -258,6 +258,24 @@ export default function TabletShowcase() {
                 aria-hidden
               />
             </Montagem>
+
+            {/* CTA explícito: no celular ninguém adivinha que o tablet é clicável */}
+            <span className="pointer-events-none relative z-10 mt-3 flex items-center justify-center gap-2">
+              <motion.span
+                aria-hidden
+                className="text-[#EEB80E]"
+                animate={off ? { y: [0, -6, 0] } : undefined}
+                transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
+              >
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 19V5M5 12l7-7 7 7" />
+                </svg>
+              </motion.span>
+              <span className="btn-3d rounded-full bg-[#EEB80E] px-5 py-2.5 font-display text-base font-extrabold text-[#2C2951] transition group-hover:-translate-y-0.5">
+                <span className="md:hidden">Toque no tablet para assistir</span>
+                <span className="hidden md:inline">Clique no tablet para assistir</span>
+              </span>
+            </span>
           </button>
         </motion.div>
       </div>

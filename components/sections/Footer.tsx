@@ -21,7 +21,7 @@ export default function Footer() {
           <img
             src="/assets/chars/logo@sm.webp"
             alt="Misturinha Maluquinha"
-            className="mx-auto aspect-[1563/681] w-[62vw] max-w-[380px] drop-shadow-[0_8px_14px_rgba(44,41,81,.2)]"
+            className="mx-auto aspect-[1563/681] w-[62vw] max-w-[380px]"
             loading="lazy"
           />
         </Reveal>
@@ -74,7 +74,7 @@ export default function Footer() {
             return (
               <motion.div
                 key={k}
-                className={'shrink-0 ' + (i === 0 || i === TURMA.length - 1 ? 'hidden md:block' : '')}
+                className={'char-shadow relative shrink-0 ' + (i === 0 || i === TURMA.length - 1 ? 'hidden md:block' : '')}
                 style={{ height: alt * 100 + '%', maxHeight: 260 }}
                 initial={reduce ? false : { y: 90, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
@@ -85,7 +85,7 @@ export default function Footer() {
                   src={'/assets/chars/' + c.slug + '@sm.webp'}
                   alt={c.nome}
                   loading="lazy"
-                  className="h-full w-auto drop-shadow-[0_10px_12px_rgba(44,41,81,.22)]"
+                  className="h-full w-auto"
                   style={{ aspectRatio: c.ratio, animation: reduce ? undefined : `bob ${4.4 + i * 0.4}s ease-in-out ${i * 0.3}s infinite` }}
                 />
               </motion.div>

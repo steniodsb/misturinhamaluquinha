@@ -54,7 +54,7 @@ export default function Hero() {
         <img
           src="/assets/chars/sol.webp"
           alt=""
-          className={'w-full h-auto drop-shadow-[0_6px_16px_rgba(246,152,5,.35)] ' +
+          className={'w-full h-auto ' +
             (off ? 'animate-[spin_46s_linear_infinite]' : '')}
         />
       </motion.div>
@@ -88,7 +88,7 @@ export default function Hero() {
           srcSet="/assets/chars/logo@sm.webp 620w, /assets/chars/logo.webp 1200w"
           sizes="(max-width: 768px) 88vw, 760px"
           alt="Misturinha Maluquinha"
-          className="mt-5 aspect-[1563/681] w-[86vw] max-w-[min(700px,52vh)] drop-shadow-[0_12px_20px_rgba(44,41,81,.22)]"
+          className="mt-5 aspect-[1563/681] w-[86vw] max-w-[min(700px,52vh)]"
           initial={off ? { opacity: 0, scale: 0.72, y: 40, rotate: -3 } : false}
           animate={{ opacity: 1, scale: 1, y: 0, rotate: 0 }}
           transition={{ type: 'spring', stiffness: 140, damping: 14, delay: 0.25 }}
@@ -166,7 +166,7 @@ export default function Hero() {
             transition={{ type: 'spring', stiffness: 120, damping: 15, delay: 0.55 + c.d }}
           >
             <div
-              className="h-full"
+              className="char-shadow relative h-full"
               style={{ animation: off ? `bob ${c.float}s ease-in-out ${i * 0.4}s infinite` : undefined }}
             >
               <img
@@ -174,7 +174,7 @@ export default function Hero() {
                 srcSet={`/assets/chars/${c.slug}@sm.webp 620w, /assets/chars/${c.slug}.webp 1200w`}
                 sizes="(max-width: 768px) 26vw, 17vw"
                 alt={c.nome + ', personagem da Misturinha Maluquinha'}
-                className="h-full w-auto select-none drop-shadow-[0_12px_14px_rgba(44,41,81,.22)]"
+                className="h-full w-auto select-none"
                 style={{ aspectRatio: RATIOS[c.slug] }}
                 draggable={false}
                 loading="eager"

@@ -53,12 +53,12 @@ export default function ParaQuem() {
             >
               {/* personagem sai de cima do card — dimensionado pela ALTURA,
                   para adultos estreitos e crianças ficarem no mesmo patamar */}
-              <div className="pointer-events-none absolute -top-[88px] left-1/2 h-[150px] -translate-x-1/2 md:-top-[100px] md:h-[165px]">
+              <div className="char-shadow pointer-events-none absolute -top-[88px] left-1/2 h-[150px] -translate-x-1/2 md:-top-[100px] md:h-[165px]">
                 <img
                   src={'/assets/chars/' + p.slug + '@sm.webp'}
                   alt=""
                   loading="lazy"
-                  className="h-full w-auto drop-shadow-[0_10px_14px_rgba(44,41,81,.2)]"
+                  className="h-full w-auto"
                   style={{ aspectRatio: RATIOS[p.slug], animation: `bob ${4.6 + i * 0.6}s ease-in-out ${i * 0.4}s infinite` }}
                 />
               </div>

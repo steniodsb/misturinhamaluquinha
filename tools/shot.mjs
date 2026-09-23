@@ -1,24 +1,26 @@
 /* Captura de tela para revisão visual.
    uso: node shot.mjs [largura] [--full | --sec=<id> | --y=<px>] */
-import { chromium } from 'playwright'
+import { chromium, webkit } from 'playwright'
 import { mkdirSync } from 'node:fs'
 
 const W = Number(process.argv[2]) || 1440
 const args = process.argv.slice(3)
 const full = args.includes('--full')
+const useWebkit = args.includes('--webkit')            // motor do Safari
+const url = args.find((a) => a.startsWith('--url='))?.slice(6) ?? 'http://localhost:4321'
 const sec = args.find((a) => a.startsWith('--sec='))?.slice(6)
 const y = Number(args.find((a) => a.startsWith('--y='))?.slice(4) ?? NaN)
 const OUT = 'C:/Users/steni/AppData/Local/Temp/claude/C--Users-steni-Documents-PROJETOS-WEB-DESIGN-COM-VIBE-LP-MISTURINHA-MALUQUINHA/2c4a7345-b5d5-4575-af1d-d8a6f3f67b81/scratchpad/shots'
 mkdirSync(OUT, { recursive: true })
 
-const browser = await chromium.launch()
-const page = await browser.newPage({ viewport: { width: W, height: 900 }, deviceScaleFactor: 1 })
+const browser = await (useWebkit ? webkit : chromium).launch()
+const page = await browser.newPage({ viewport: { width: W, height: W < 600 ? 844 : 900 }, deviceScaleFactor: W < 600 ? 2 : 1 })
 
 const erros = []
 page.on('console', (m) => { if (m.type() === 'error') erros.push(m.text().slice(0, 300)) })
 page.on('pageerror', (e) => erros.push('PAGEERROR ' + e.message.slice(0, 300)))
 
-await page.goto('http://localhost:4321', { waitUntil: 'networkidle' })
+await page.goto(url, { waitUntil: 'networkidle' })
 
 // dispara todas as animações de entrada: percorre a página inteira e volta
 await page.evaluate(async () => {
@@ -32,7 +34,7 @@ await page.waitForTimeout(1200)
 // desliga o scroll suave: saltos programáticos grandes ficam exatos
 await page.evaluate(() => { const l = window.__lenis; if (l && typeof l.destroy === 'function') l.destroy() })
 
-let name = `w${W}`
+let name = `w${W}` + (useWebkit ? '-webkit' : '')
 if (sec === 'bottom') {
   await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight))
   await page.waitForTimeout(1400)
