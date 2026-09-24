@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, useReducedMotion } from 'motion/react'
-import { Reveal, CharImg, WordsIn } from '@/components/motion'
+import { Reveal, WordsIn } from '@/components/motion'
 import { AUTOR } from '@/lib/content'
 
 /* proporção do recorte da foto (largura/altura) — reserva o espaço antes de carregar */
@@ -36,11 +36,6 @@ export default function Autor() {
         <div className="mt-14 grid items-start gap-12 lg:grid-cols-[minmax(0,.9fr)_minmax(0,1.3fr)] lg:gap-16">
           {/* ── foto ── */}
           <div className="relative mx-auto w-full max-w-[420px] pt-14 lg:sticky lg:top-28">
-            {/* Matteo espia por trás da moldura */}
-            <div className="pointer-events-none absolute -right-6 top-[38%] z-0 hidden w-[110px] md:block lg:-right-12 lg:w-[125px]">
-              <CharImg slug="matteo" alt="" float="bob" />
-            </div>
-
             <motion.div
               className="relative z-10 rounded-[2.5rem] border-[3px] border-[#2C2951] shadow-[0_8px_0_0_#2C2951]"
               style={{
