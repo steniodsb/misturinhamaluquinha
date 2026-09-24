@@ -18,6 +18,17 @@ npm run build      # gera a pasta out/ (site estático pronto para subir)
 - **cPanel / WaveHost / Apache / Nginx:** suba o conteúdo de `out/` para a raiz do domínio (`public_html`). Não precisa de nada além dos arquivos.
 - **Vercel / Netlify:** conecte a pasta `site/`, build command `npm run build`, output `out/`.
 
+## Publicado no WordPress do cliente (misturinhamaluquinha.com.br)
+
+A LP roda como **plugin** ("Misturinha Maluquinha — Landing Page") e é servida na página inicial.
+Desativar o plugin devolve o site normal do WordPress.
+
+- Vídeos longos (`apresentacao-*.mp4`) ficam na Biblioteca de Mídia (`/wp-content/uploads/2026/09/`) porque o
+  zip do plugin precisa ficar abaixo de ~10 MB; o resto vai dentro do plugin.
+- Para **atualizar**: `npm run pack:wp-plugin` → no wp-admin, *Plugins → Adicionar plugin → Enviar plugin* →
+  enviar `wp-pack/misturinha-lp.zip` → "Substituir o atual pelo enviado".
+- Se trocar os vídeos longos, suba os novos pela Mídia e ajuste as URLs no script `pack:wp-plugin` do package.json.
+
 ## Publicar dentro de um WordPress (100% igual, sem Elementor)
 
 O WordPress passa a **servir o `index.html` exportado** numa URL do site; assets ficam em `wp-content/uploads/misturinha/`.

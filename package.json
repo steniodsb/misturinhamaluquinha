@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start -p 4321",
     "pack:wp": "next build && node tools/wp-pack.mjs",
-    "lint": "next lint"
+    "lint": "next lint",
+    "pack:wp-plugin": "next build && node tools/wp-plugin.mjs --external=apresentacao-numeros.mp4=https://misturinhamaluquinha.com.br/wp-content/uploads/2026/09/apresentacao-numeros.mp4 --external=apresentacao-vogais.mp4=https://misturinhamaluquinha.com.br/wp-content/uploads/2026/09/apresentacao-vogais.mp4 --drop=tablet-loop.webm"
   },
   "dependencies": {
     "lenis": "1.3.11",
