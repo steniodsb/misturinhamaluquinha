@@ -23,6 +23,10 @@ cpSync(join(OUT, '_next'), join(APP, '_next'), { recursive: true })
 cpSync(join(OUT, 'assets'), join(APP, 'assets'), { recursive: true })
 cpSync(join(OUT, 'index.html'), join(APP, 'index.html'))
 
+// ícones e manifest que o Next coloca na raiz (favicon.ico, icon.png, apple-icon.png…)
+const raiz = readdirSync(OUT).filter((f) => /\.(ico|png|svg|webmanifest)$/.test(f))
+for (const f of raiz) cpSync(join(OUT, f), join(APP, f))
+
 // reescreve caminhos absolutos da raiz para a base dentro do WP
 const walk = (d) => readdirSync(d, { withFileTypes: true }).flatMap((e) =>
   e.isDirectory() ? walk(join(d, e.name)) : [join(d, e.name)])
@@ -32,7 +36,8 @@ for (const f of walk(APP)) {
   const s = readFileSync(f, 'utf8')
   // precedido por aspas, parêntese, '=', vírgula, espaço ou início de linha
   // (cobre src, href, url(), srcSet "…620w, /assets/…" e strings no JS)
-  const r = s.replace(/(^|[\s"'(=,])\/(_next|assets)\//gm, `$1${base}/$2/`)
+  let r = s.replace(/(^|[\s"'(=,])\/(_next|assets)\//gm, `$1${base}/$2/`)
+  for (const f of raiz) r = r.split(`"/${f}`).join(`"${base}/${f}`)
   if (r !== s) { writeFileSync(f, r); n++ }
 }
 
