@@ -20,8 +20,11 @@ npm run build      # gera a pasta out/ (site estático pronto para subir)
 
 ## Publicado no WordPress do cliente (misturinhamaluquinha.com.br)
 
-A LP roda como **plugin** ("Misturinha Maluquinha — Landing Page") e é servida na página inicial.
-Desativar o plugin devolve o site normal do WordPress.
+A LP roda como **plugin** ("Misturinha Maluquinha — Landing Page"). Ele registra o modelo de página
+**"Landing Misturinha (plugin)"**; a página **"Home — Misturinha Maluquinha"** (id 30) usa esse modelo e é a
+página inicial em *Configurações → Leitura*. `/home/` redireciona (301) para a raiz. O conteúdo da página no
+editor não aparece no site. Desativar o plugin devolve o site normal do WordPress; se a página inicial deixar de
+ser estática, a home continua mostrando a LP (rede de segurança).
 
 - Vídeos longos (`apresentacao-*.mp4`) ficam na Biblioteca de Mídia (`/wp-content/uploads/2026/09/`) porque o
   zip do plugin precisa ficar abaixo de ~10 MB; o resto vai dentro do plugin.

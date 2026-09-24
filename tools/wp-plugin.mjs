@@ -54,7 +54,7 @@ writeFileSync(join(DIR, `${NAME}.php`), `<?php
 /**
  * Plugin Name: Misturinha Maluquinha — Landing Page
  * Description: Serve a landing page da coleção (export estático do Next.js) ${slug ? 'em /' + slug + '/' : 'como página inicial'}, com 100% das animações. Desative o plugin para voltar ao site normal do WordPress.
- * Version: 1.0.0
+ * Version: 1.1.1
  * Author: Stenio Galvão WebDesign
  * Requires PHP: 7.4
  */
@@ -62,20 +62,41 @@ if (!defined('ABSPATH')) exit;
 
 define('MISTURINHA_LP_SLUG', '${slug}');
 define('MISTURINHA_LP_FILE', __DIR__ . '/index.html');
+define('MISTURINHA_LP_TEMPLATE', 'misturinha-lp');
 
-function misturinha_lp_e_a_rota() {
-    if (is_admin() || wp_doing_ajax() || (defined('REST_REQUEST') && REST_REQUEST)) return false;
-    $path = trim((string) parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH), '/');
-    if ($path !== MISTURINHA_LP_SLUG) return false;
-    // não intercepta previews, buscas e o editor do Elementor
+/* Modelo de página: em Páginas → editar → Atributos da página → Modelo.
+   Qualquer página com este modelo passa a exibir a landing page. */
+add_filter('theme_page_templates', function ($templates) {
+    $templates[MISTURINHA_LP_TEMPLATE] = 'Landing Misturinha (plugin)';
+    return $templates;
+});
+
+function misturinha_lp_pular_requisicao() {
+    if (is_admin() || wp_doing_ajax() || (defined('REST_REQUEST') && REST_REQUEST)) return true;
+    // não intercepta previews, buscas, customizer e o editor do Elementor
     foreach (array_keys($_GET) as $k) {
-        if (in_array($k, ['p', 'page_id', 'preview', 's', 'customize_changeset_uuid'], true) || strpos($k, 'elementor') === 0) return false;
+        if (in_array($k, ['preview', 's', 'customize_changeset_uuid'], true) || strpos($k, 'elementor') === 0) return true;
     }
-    return is_readable(MISTURINHA_LP_FILE);
+    return !is_readable(MISTURINHA_LP_FILE);
+}
+
+function misturinha_lp_deve_servir() {
+    if (misturinha_lp_pular_requisicao()) return false;
+    $path = trim((string) parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH), '/');
+    // 1) página que usa o modelo "Landing Misturinha (plugin)"
+    if (is_page() && get_page_template_slug(get_queried_object_id()) === MISTURINHA_LP_TEMPLATE) {
+        // se ela é a página inicial e foi acessada pelo slug (/home/), deixa o WP
+        // redirecionar (301) para a raiz — evita conteúdo duplicado no Google
+        if ((int) get_option('page_on_front') === (int) get_queried_object_id() && $path !== '') return false;
+        return true;
+    }
+    // 2) rede de segurança: se a página inicial não for uma página estática, a home continua sendo a LP
+    if (get_option('show_on_front') !== 'page' && $path === MISTURINHA_LP_SLUG) return true;
+    return false;
 }
 
 add_action('template_redirect', function () {
-    if (!misturinha_lp_e_a_rota()) return;
+    if (!misturinha_lp_deve_servir()) return;
     status_header(200);
     header('Content-Type: text/html; charset=utf-8');
     header('Cache-Control: public, max-age=300');
@@ -83,9 +104,22 @@ add_action('template_redirect', function () {
     exit;
 }, 0);
 
-add_filter('pre_handle_404', function ($preempt) {
-    return misturinha_lp_e_a_rota() ? true : $preempt;
+/* aviso dentro do editor, para ninguém tentar editar a LP por ali */
+add_action('admin_notices', function () {
+    $s = function_exists('get_current_screen') ? get_current_screen() : null;
+    if (!$s || $s->base !== 'post' || $s->post_type !== 'page') return;
+    $id = isset($_GET['post']) ? (int) $_GET['post'] : 0;
+    if (!$id || get_page_template_slug($id) !== MISTURINHA_LP_TEMPLATE) return;
+    echo '<div class="notice notice-info"><p><strong>Esta página exibe a landing page da Misturinha Maluquinha</strong>, servida pelo plugin. '
+       . 'O conteúdo aqui não aparece no site — as alterações da LP são feitas no código e publicadas substituindo o plugin.</p></div>';
 });
+
+add_filter('display_post_states', function ($states, $post) {
+    if ($post->post_type === 'page' && get_page_template_slug($post->ID) === MISTURINHA_LP_TEMPLATE) {
+        $states['misturinha-lp'] = 'Landing Misturinha (plugin)';
+    }
+    return $states;
+}, 10, 2);
 `)
 
 const zip = join(PACK, `${NAME}.zip`)
