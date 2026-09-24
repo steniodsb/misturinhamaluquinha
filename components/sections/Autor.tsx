@@ -35,14 +35,14 @@ export default function Autor() {
 
         <div className="mt-14 grid items-start gap-12 lg:grid-cols-[minmax(0,.9fr)_minmax(0,1.3fr)] lg:gap-16">
           {/* ── foto ── */}
-          <div className="relative mx-auto w-full max-w-[420px] lg:sticky lg:top-28">
+          <div className="relative mx-auto w-full max-w-[420px] pt-14 lg:sticky lg:top-28">
             {/* Matteo espia por trás da moldura */}
             <div className="pointer-events-none absolute -right-6 top-[38%] z-0 hidden w-[110px] md:block lg:-right-12 lg:w-[125px]">
               <CharImg slug="matteo" alt="" float="bob" />
             </div>
 
             <motion.div
-              className="relative z-10 overflow-hidden rounded-[2.5rem] border-[3px] border-[#2C2951] shadow-[0_8px_0_0_#2C2951]"
+              className="relative z-10 rounded-[2.5rem] border-[3px] border-[#2C2951] shadow-[0_8px_0_0_#2C2951]"
               style={{
                 aspectRatio: '4 / 5',
                 background:
@@ -66,15 +66,22 @@ export default function Autor() {
                 />
               ))}
 
-              <img
-                src="/assets/autor/luan.webp"
-                srcSet="/assets/autor/luan@sm.webp 600w, /assets/autor/luan.webp 1100w"
-                sizes="(max-width: 768px) 86vw, 420px"
-                alt={AUTOR.nome + ', autor da Misturinha Maluquinha'}
-                loading="lazy"
-                style={{ aspectRatio: FOTO_RATIO }}
-                className="absolute inset-x-0 bottom-0 mx-auto h-[104%] w-auto max-w-none -translate-x-1/2 left-1/2 object-contain object-bottom"
-              />
+              {/* a foto pode vazar por CIMA (cabeça inteira); só a base reta da
+                  cintura é recortada, acompanhando os cantos da moldura */}
+              <div
+                className="absolute inset-0"
+                style={{ clipPath: 'inset(-40% 0 0 0 round 0 0 2.3rem 2.3rem)' }}
+              >
+                <img
+                  src="/assets/autor/luan.webp"
+                  srcSet="/assets/autor/luan@sm.webp 600w, /assets/autor/luan.webp 1100w"
+                  sizes="(max-width: 768px) 86vw, 420px"
+                  alt={AUTOR.nome + ', autor da Misturinha Maluquinha'}
+                  loading="lazy"
+                  style={{ aspectRatio: FOTO_RATIO }}
+                  className="absolute bottom-0 left-1/2 h-[112%] w-auto max-w-none -translate-x-1/2 object-contain object-bottom"
+                />
+              </div>
             </motion.div>
 
             {/* etiqueta com o nome, mordendo a moldura */}
