@@ -54,7 +54,7 @@ writeFileSync(join(DIR, `${NAME}.php`), `<?php
 /**
  * Plugin Name: Misturinha Maluquinha — Landing Page
  * Description: Serve a landing page da coleção (export estático do Next.js) ${slug ? 'em /' + slug + '/' : 'como página inicial'}, com 100% das animações. Desative o plugin para voltar ao site normal do WordPress.
- * Version: 1.1.1
+ * Version: 1.2.0
  * Author: Stenio Galvão WebDesign
  * Requires PHP: 7.4
  */
