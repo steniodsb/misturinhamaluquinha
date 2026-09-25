@@ -47,10 +47,35 @@ export default function Bonus() {
                 </p>
                 <p className="font-display text-6xl font-extrabold leading-none text-[#2C2951] md:text-7xl">
                   <Counter to={b.meta} />
-                  <span className="ml-2 text-2xl text-[#55507F]">{i ? 'obras' : 'coleções'}</span>
+                  <span className="ml-2 text-2xl text-[#55507F]">{b.unidade}</span>
                 </p>
-                <h3 className="mt-4 font-display text-2xl font-extrabold text-[#2C2951]">{b.titulo}</h3>
-                <p className="mt-2 text-pretty leading-relaxed text-[#55507F]">{b.texto}</p>
+                <h3 className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 font-display text-2xl font-extrabold text-[#2C2951]">
+                  {b.titulo}
+                  {b.selo && (
+                    <span
+                      className="-rotate-3 rounded-lg border-[2.5px] border-[#2C2951] px-2.5 py-0.5 text-sm tracking-wider text-white shadow-[0_3px_0_0_#2C2951]"
+                      style={{ background: '#65AA2D' }}
+                    >
+                      {b.selo}
+                    </span>
+                  )}
+                </h3>
+                {b.texto.map((t) => (
+                  <p key={t} className="mt-2 text-pretty leading-relaxed text-[#55507F]">{t}</p>
+                ))}
+                {b.modalidades.length > 0 && (
+                  <ul className="mt-4 flex flex-wrap gap-2">
+                    {b.modalidades.map((m) => (
+                      <li
+                        key={m}
+                        className="rounded-full border-[2.5px] border-[#2C2951] bg-white px-3.5 py-1 font-display text-sm font-extrabold shadow-[0_3px_0_0_#2C2951]"
+                        style={{ color: b.cor }}
+                      >
+                        {m}
+                      </li>
+                    ))}
+                  </ul>
+                )}
                 <p className="mt-4 rounded-xl bg-[#FDEFD6] px-4 py-3 text-sm leading-snug text-[#55507F]">{b.nota}</p>
               </article>
             </Reveal>

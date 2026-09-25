@@ -11,6 +11,7 @@ import { Confete } from '@/components/Scenery'
 import { Reveal } from '@/components/motion'
 
 const VIDEOS = [
+  { id: 'formas',  rotulo: 'Formas Geométricas',     src: '/assets/video/apresentacao-formas.mp4',  poster: '/assets/video/poster-formas.jpg' },
   { id: 'numeros', rotulo: 'Números e Cores',        src: '/assets/video/apresentacao-numeros.mp4', poster: '/assets/video/poster-numeros.jpg' },
   { id: 'vogais',  rotulo: 'Vogais e Sentimentos',   src: '/assets/video/apresentacao-vogais.mp4',  poster: '/assets/video/poster-vogais.jpg' },
 ]
@@ -140,6 +141,10 @@ function Lightbox({
               controls autoPlay playsInline
               className="w-full rounded-xl border-4 border-white bg-black shadow-2xl"
             />
+            <p className="mt-3 text-center text-sm font-semibold text-white/85">
+              Trechos selecionados de <strong className="text-[#EEB80E]">{v.rotulo}</strong> — os vídeos
+              completos (recitado e musicado) estão nos QR Codes dentro do livro.
+            </p>
           </motion.div>
         </motion.div>
       )}
@@ -152,7 +157,7 @@ export default function TabletShowcase() {
   const ref = useRef<HTMLElement>(null)
   const reduce = useReducedMotion()
   const [aberto, setAberto] = useState(false)
-  const [qual, setQual] = useState('numeros')
+  const [qual, setQual] = useState('formas')
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'center center'] })
   const escala = useTransform(scrollYProgress, [0, 1], [0.86, 1])
   const giro = useTransform(scrollYProgress, [0, 1], [-7, 0])
@@ -187,9 +192,19 @@ export default function TabletShowcase() {
 
           <Reveal dir="right" delay={0.16}>
             <p className="mx-auto mt-5 max-w-lg text-pretty text-lg leading-relaxed text-[#D6EEFB] lg:mx-0">
-              Dentro de cada livro há QR Codes. A criança escaneia e o mesmo conteúdo
-              volta recitado em leitura guiada e cantado por uma criança de 8 anos —
-              tudo com intérprete de LIBRAS e legenda.
+              No interior de cada livro, há 2 QR Codes. Ao lê-los, a criança será levada para a
+              versão recitada (leitura guiada) e para a versão musicada (cantada por uma criança
+              de 8 anos) — tudo com intérprete de LIBRAS e legendas.
+            </p>
+            <p className="mx-auto mt-3 max-w-lg text-pretty text-lg leading-relaxed text-[#D6EEFB] lg:mx-0">
+              <span className="hidden lg:inline">Ao lado</span>
+              <span className="lg:hidden">Abaixo</span>, veja alguns recortes dos vídeos sobre cada tema.
+            </p>
+            <p className="mx-auto mt-3 inline-flex max-w-lg items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-sm font-bold text-[#EEB80E] lg:mx-0">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" aria-hidden>
+                <circle cx="6" cy="6" r="3" /><circle cx="6" cy="18" r="3" /><path d="M20 4L8.1 15.9M14.5 14.5L20 20M8.1 8.1L12 12" />
+              </svg>
+              São apenas trechos — os vídeos completos estão nos QR Codes do livro.
             </p>
           </Reveal>
 
@@ -205,7 +220,7 @@ export default function TabletShowcase() {
           </div>
 
           <Reveal dir="up" delay={0.45}>
-            <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row lg:justify-start">
+            <div className="mt-8 flex flex-col flex-wrap items-center gap-3 sm:flex-row lg:justify-start">
               {VIDEOS.map((v) => (
                 <button
                   key={v.id}
@@ -215,7 +230,7 @@ export default function TabletShowcase() {
                   <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
                     <path d="M8 5v14l11-7z" />
                   </svg>
-                  {v.rotulo}
+                  Trechos · {v.rotulo}
                 </button>
               ))}
             </div>
@@ -228,7 +243,7 @@ export default function TabletShowcase() {
           className="mx-auto w-[74vw] max-w-[420px] lg:w-[38vw]"
         >
           <button
-            onClick={() => abrir('numeros')}
+            onClick={() => abrir('formas')}
             aria-label="Assistir a apresentação completa"
             className="group block w-full cursor-pointer"
           >
@@ -254,15 +269,15 @@ export default function TabletShowcase() {
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
                       <path d="M12 19V5M5 12l7-7 7 7" />
                     </svg>
-                    <span className="md:hidden">Toque para assistir</span>
-                    <span className="hidden md:inline">Clique para assistir</span>
+                    <span className="md:hidden">Toque para ver os trechos</span>
+                    <span className="hidden md:inline">Clique para ver os trechos</span>
                   </motion.span>
                 </>
               }
             >
               <video
                 src="/assets/video/tablet-loop.mp4"
-                poster="/assets/video/poster-numeros.jpg"
+                poster="/assets/video/poster-formas.jpg"
                 autoPlay muted loop playsInline
                 className="h-full w-full object-cover"
                 aria-hidden

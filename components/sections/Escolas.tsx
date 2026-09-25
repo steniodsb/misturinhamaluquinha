@@ -10,7 +10,7 @@ const ARGUMENTOS = [
   { t: 'Acessibilidade documentada', d: 'Interpretação em LIBRAS e legenda em todo o audiovisual — apoio direto às políticas de inclusão da escola.' },
   { t: 'Material projetável', d: 'Os vídeos recitados e cantados podem ser abertos antes e exibidos para a turma inteira.' },
   { t: 'ISBN nos três títulos', d: 'Catalogação na fonte, pronto para acervo, licitação e biblioteca escolar.' },
-  { t: 'Condições para volume', d: 'Proposta própria para escolas, redes, secretarias de educação e distribuidoras.' },
+  { t: 'Condições para volume', d: 'Proposta própria para escolas, redes, secretarias de educação e editoras.' },
 ]
 
 export default function Escolas() {
@@ -26,7 +26,7 @@ export default function Escolas() {
           <div className="max-w-3xl">
             <Reveal>
               <span className="inline-block rounded-full bg-[#52CBF9] px-4 py-1.5 font-display text-xs font-extrabold uppercase tracking-wider text-[#2C2951]">
-                Escolas, redes e distribuidoras
+                Escolas, redes e editoras
               </span>
             </Reveal>
             <Reveal delay={0.08}>

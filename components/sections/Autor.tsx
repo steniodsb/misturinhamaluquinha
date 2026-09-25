@@ -84,7 +84,7 @@ export default function Autor() {
               <div className="rounded-2xl border-[3px] border-[#2C2951] bg-white px-5 py-3 text-center shadow-[0_5px_0_0_#2C2951]">
                 <p className="font-display text-2xl font-extrabold leading-none text-[#2C2951]">{AUTOR.nome}</p>
                 <p className="mt-1 text-sm font-semibold text-[#55507F]">
-                  {AUTOR.idade} anos · Jequié, Bahia · nutricionista, ex-professor, poeta
+                  Nordestino, {AUTOR.idade} anos, autor, poeta e compositor. Ex-nutricionista e professor.
                 </p>
               </div>
             </Reveal>

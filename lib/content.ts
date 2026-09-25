@@ -5,6 +5,7 @@ export const CONTATO = {
   whatsappLabel: '(73) 99186-7754',
   instagram: 'misturinhamaluquinha',
   instagramUrl: 'https://instagram.com/misturinhamaluquinha',
+  email: 'contato@misturinhamaluquinha.com.br',
   cidade: 'Jequié, Bahia',
 }
 
@@ -15,7 +16,7 @@ export const msgWhats = (t: string) =>
 
 export const CTA = {
   familia: msgWhats('Olá! Quero levar a coleção Misturinha Maluquinha para minha criança. Pode me ajudar?'),
-  escola: msgWhats('Olá! Sou de uma escola/distribuidora e quero receber uma proposta da coleção Misturinha Maluquinha em volume.'),
+  escola: msgWhats('Olá! Sou de uma escola/editora e quero receber uma proposta da coleção Misturinha Maluquinha em volume.'),
 }
 
 /* ── personagens (assets já recortados, fundo transparente) ── */
@@ -70,9 +71,12 @@ export const LIVROS = [
     cor: '#E71626',
     isbn: '978-65-02-34021-9',
     resumo:
-      'As cinco vogais entram junto com os sentimentos que a criança já vive mas ainda não sabe nomear: alegria, esperança, empatia, ingratidão, inspiração, otimismo, ódio e urgência.',
-    verso: ['Você sabia que a Alegria', 'Enche a gente de euforia', 'Fazendo-nos sorrir e cantar?!'],
-    versoNota: 'trecho da letra “A”',
+      'As cinco vogais entram junto com os sentimentos que as crianças já vivem, mas ainda não sabem nomear, interpretar e lidar: alegria, esperança, empatia, ingratidão, inspiração, otimismo, ódio e urgência.',
+    sextilhas: [
+      ['Hoje vamos aprender', 'Com misturinhas maluquinhas,', 'Divertidas e legais,', 'Sobre os vários momentos', 'Que demonstramos sentimentos', 'E sobre todas as vogais'],
+      ['Pra começar pelo início', 'Vem a primeira do alfabeto', 'Conhecida como letra “A”.', 'Você sabia que a Alegria', 'Enche a gente de euforia', 'Fazendo-nos sorrir e cantar?!'],
+      ['Depois da letra “A”', 'Preste bem atenção', 'Que vem a letra “E”.', 'Esperança é acreditar', 'Que você vai realizar', 'O sonho que quiser.'],
+    ],
     video: 'vogais',
   },
   {
@@ -83,8 +87,11 @@ export const LIVROS = [
     isbn: '978-65-02-34020-2',
     resumo:
       'Contar e enxergar cor no mesmo fôlego. Os numerais aparecem dentro de cenas coloridas, e a cor deixa de ser enfeite para virar conteúdo.',
-    verso: ['O nome das diversas cores', 'Como o colorido destas flores', 'E sobre os vários numerais'],
-    versoNota: 'abertura do livro',
+    sextilhas: [
+      ['Hoje vamos aprender', 'Com misturinhas maluquinhas,', 'Divertidas e legais,', 'O nome das diversas cores', 'Como o colorido destas flores', 'E sobre os vários numerais'],
+      ['Antes do número um', 'Preciso lembrar que vem o ZERO.', 'Por favor, se esqueça dele não!', 'O verde está na mata', 'Colore o capim que a vaca', 'Mastiga e engole de montão.'],
+      ['Assim que passa o zero,', 'O número UM aparece', 'Pra começar a contagem', 'O marrom está no barro', 'E o vermelho ali no carro', 'Estacionado na garagem'],
+    ],
     video: 'numeros',
   },
   {
@@ -95,8 +102,11 @@ export const LIVROS = [
     isbn: '978-65-02-34022-6',
     resumo:
       'As formas em duas dimensões — comprimento e largura — apresentadas ao lado dos animais. A geometria entra pelo olhar antes de entrar pela régua.',
-    verso: ['Hoje vamos aprender', 'Com misturinhas maluquinhas,', 'Divertidas e legais,'],
-    versoNota: 'abertura do livro',
+    sextilhas: [
+      ['Hoje vamos aprender', 'Com misturinhas maluquinhas,', 'Divertidas e legais,', 'Sobre a nossa geometria', 'Seus desenhos, suas linhas,', 'Misturada aos animais.'],
+      ['Você sabia que a geometria', 'Estuda as formas no espaço', 'Seu tamanho e a sua posição?!', 'E que a minhoca é um animal', 'Que deixa o solo bem legal', 'Mesmo sem pernas e sem mão?'],
+      ['O triângulo tem três vértices,', 'Possui suas três arestas', 'Também chamadas de lados.', 'Na savana, o leão é o mais feroz,', 'O guepardo é o mais veloz,', 'Pulam mais alto os veados.'],
+    ],
     video: 'numeros',
   },
 ] as const
@@ -121,12 +131,20 @@ export const DIFERENCIAIS = [
 
 /* ── bônus por meta de venda ── */
 export const BONUS = [
-  { meta: 200, titulo: 'Oficina com ateliê artístico',
-    texto: 'A cada 200 coleções vendidas, sorteamos uma oficina de biscuit e pintura para 15 crianças simultaneamente.',
+  { meta: 200, unidade: 'vendas', titulo: 'Oficina com ateliê artístico', selo: 'LIBERADA',
+    texto: [
+      'A cada 200 coleções vendidas, levaremos o ateliê artístico à casa do ganhador.',
+      'Oficina de biscuit e pintura para reprodução dos nossos personagens (máximo de 15 crianças por oficina).',
+    ],
+    modalidades: [],
     nota: 'Se o ganhador não for de ' + CONTATO.cidade + ', contratamos um ateliê da região vencedora.',
     cor: '#894188' },
-  { meta: 300, titulo: '3 meses de atividade paga',
-    texto: 'A cada 300 obras vendidas, 2 crianças são sorteadas para ganhar 3 meses de mensalidade em jiu-jitsu, futebol, ballet ou musicoterapia.',
+  { meta: 300, unidade: 'coleções vendidas', titulo: '3 meses de atividade paga', selo: '',
+    texto: [
+      '3 crianças serão presenteadas com um sorteio mais que especial.',
+      'Cada criança sorteada poderá escolher uma das modalidades abaixo para ganhar 3 meses de mensalidades pagas pela Misturinha Maluquinha.',
+    ],
+    modalidades: ['Jiu-jitsu', 'Musicoterapia', 'Futebol', 'Artes plásticas'],
     nota: 'Fora de ' + CONTATO.cidade + ', contratamos o serviço na cidade da criança sorteada.',
     cor: '#F69805' },
 ] as const
@@ -153,7 +171,7 @@ export const FAQ = [
   { q: 'Preciso de internet para usar em sala de aula?',
     a: 'Para o livro impresso, não. Os QR Codes levam ao conteúdo audiovisual, e esse acesso pede conexão — mas o vídeo pode ser aberto antes e projetado para a turma inteira.' },
   { q: 'Como compro em volume, para uma escola ou rede de ensino?',
-    a: 'Fale com a gente pelo WhatsApp. Atendemos escolas, secretarias de educação e distribuidoras com condições próprias para volume, e os três títulos têm ISBN.' },
+    a: 'Fale com a gente pelo WhatsApp ou e-mail (' + 'contato@misturinhamaluquinha.com.br' + '). Atendemos escolas, secretarias de educação e editoras com condições especiais para grandes volumes.' },
   { q: 'Quais as formas de pagamento?',
     a: 'A coleção completa sai por R$ ' + PRECO.valor + ',00, em ' + PRECO.formas + '.' },
 ] as const

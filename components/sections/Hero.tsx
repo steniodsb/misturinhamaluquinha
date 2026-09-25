@@ -104,15 +104,14 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.5 }}
         >
-          Um livro que é lido, escutado, cantado{' '}
+          O livro que seu filho lê, ouve{' '}
           <span className="relative whitespace-nowrap">
-            e recitado
+            e canta
             <svg viewBox="0 0 200 12" className="absolute -bottom-1 left-0 w-full" aria-hidden>
               <path d="M2,8 C50,2 150,12 198,5" stroke="#EEB80E" strokeWidth="6"
                 fill="none" strokeLinecap="round" />
             </svg>
           </span>
-          .
         </motion.p>
 
         <motion.p
@@ -121,8 +120,8 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.62 }}
         >
-          Três livros paradidáticos com poesia, música, atividades e tradução em LIBRAS —
-          para crianças de 4 a 8 anos, típicas e atípicas.
+          Coleção Paradidática Multimídia e Multissensorial com 6 mídias audiovisuais, tradução em
+          LIBRAS e atividade de fixação.
         </motion.p>
 
         <motion.div
@@ -143,7 +142,7 @@ export default function Hero() {
             href="#escolas"
             className="btn-3d w-full rounded-full bg-white px-7 py-3.5 font-display text-lg font-extrabold text-[#0271B8] sm:w-auto"
           >
-            Sou escola ou distribuidora
+            Sou escola ou editora
           </a>
         </motion.div>
       </motion.div>

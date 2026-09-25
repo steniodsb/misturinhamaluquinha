@@ -13,6 +13,7 @@ const INGREDIENTES = [
   { t: 'Leitura guiada',c: '#FA4110', r: 4 },
   { t: 'Canto',         c: '#E0568F', r: -5 },
   { t: 'Interdisciplina', c: '#015A94', r: 6 },
+  { t: 'Artesanato',    c: '#894188', r: -4 },
 ]
 
 export default function PorQue() {

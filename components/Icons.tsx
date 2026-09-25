@@ -70,6 +70,12 @@ export const IconInsta = ({ className }: P) => wrap(
     <circle cx="17.4" cy="6.6" r=".9" fill="currentColor" />
   </>, className)
 
+export const IconMail = ({ className }: P) => wrap(
+  <>
+    <rect x="3" y="5" width="18" height="14" rx="3" />
+    <path d="M4 7.5l8 5.5 8-5.5" />
+  </>, className)
+
 export const ICONES = {
   livro: IconLivro, cerebro: IconCerebro, cruz: IconCruz, ouvido: IconOuvido,
   qr: IconQr, libras: IconLibras, check: IconCheck,

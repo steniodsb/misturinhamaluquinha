@@ -44,8 +44,8 @@ export default function OQueE() {
           <Reveal dir="up" delay={0.15}>
             <p className="mt-5 text-pretty text-lg leading-relaxed text-[#55507F]">
               A Misturinha Maluquinha é um <strong className="text-[#2C2951]">produto literário
-              paradidático, multimídia e multissensorial</strong> — uma ferramenta para o processo de
-              educação, desenvolvimento e lazer das crianças.
+              paradidático, multimídia e multissensorial</strong> e será uma ferramenta valiosíssima
+              para o processo de educação formal, desenvolvimento e lazer de seus filhos (as).
             </p>
           </Reveal>
 

@@ -3,7 +3,7 @@
 import { motion, useReducedMotion } from 'motion/react'
 import { Reveal } from '@/components/motion'
 import { CONTATO, CTA, TURMA, CHARS } from '@/lib/content'
-import { IconWhats, IconInsta } from '@/components/Icons'
+import { IconWhats, IconInsta, IconMail } from '@/components/Icons'
 import { Hills, CloudBand } from '@/components/Scenery'
 
 export default function Footer() {
@@ -27,17 +27,17 @@ export default function Footer() {
         </Reveal>
         <Reveal delay={0.08}>
           <h2 className="mt-6 text-balance font-display text-3xl font-extrabold leading-[1.06] text-[#2C2951] sm:text-4xl md:text-5xl">
-            Vamos colocar essa mistura na mão das crianças?
+            Vamos levar essa Misturinha para a biblioteca pessoal de seu filho?!
           </h2>
         </Reveal>
         <Reveal delay={0.16}>
           <p className="mx-auto mt-4 max-w-xl text-pretty text-lg text-[#55507F]">
-            Fale direto com a equipe da Misturinha. Respondemos famílias, escolas e distribuidoras.
+            Fale direto com nossa equipe por meio dos canais de comunicação abaixo:
           </p>
         </Reveal>
 
         <Reveal delay={0.24}>
-          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <div className="mt-8 flex flex-col flex-wrap items-center justify-center gap-3 sm:flex-row">
             <a
               href={CTA.familia}
               target="_blank"
@@ -55,6 +55,13 @@ export default function Footer() {
             >
               <IconInsta className="h-6 w-6" />
               @{CONTATO.instagram}
+            </a>
+            <a
+              href={'mailto:' + CONTATO.email}
+              className="btn-3d flex w-full items-center justify-center gap-2 rounded-full bg-white px-4 py-4 font-display text-[15px] font-extrabold text-[#0271B8] sm:w-auto sm:gap-2.5 sm:px-7 sm:text-lg"
+            >
+              <IconMail className="h-5 w-5 shrink-0 sm:h-6 sm:w-6" />
+              <span className="whitespace-nowrap">{CONTATO.email}</span>
             </a>
           </div>
         </Reveal>
